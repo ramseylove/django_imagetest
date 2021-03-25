@@ -1,0 +1,6 @@
+{% extends 'image_upload/base.html' %}
+{% block content %}
+    <h1>Upload Success@!</h1>
+    <img src="{{object.media_image.url}}" />
+    <p>Location: {{object.media_image.url}} </p>
+{% endblock content %}
