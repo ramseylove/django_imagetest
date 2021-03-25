@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.db.models.fields.files import ImageField
 from imagekit.models import ProcessedImageField
 # from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from imagekit.processors import ResizeToFill, SmartResize, ResizeToFit
 
 # class Image(models.Model):
 #     media_image = ImageField(upload_to='images')
@@ -13,11 +13,18 @@ from imagekit.processors import ResizeToFill
 #                                             format='JPEG',
 #                                             options={'quality': 60})
 
+# class Image(models.Model):
+#     media_image = ProcessedImageField(upload_to='media_images',
+#                                             processors=[ResizeToFill(100, 100)],
+#                                             format='JPEG',
+#                                             options={'quality': 60})
+#     def get_absolute_url(self):
+#         return reverse('success', kwargs={'pk': self.pk})
+
 class Image(models.Model):
     media_image = ProcessedImageField(upload_to='media_images',
-                                            processors=[ResizeToFill(100, 100)],
+                                            processors=[ResizeToFit(1000)],
                                             format='JPEG',
-                                            options={'quality': 60})
+                                            options={'quality': 90})
     def get_absolute_url(self):
         return reverse('success', kwargs={'pk': self.pk})
-
