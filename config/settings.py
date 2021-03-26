@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'imagekit',
     'crispy_forms',
     'image_upload',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

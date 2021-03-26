@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+django-extensions = "*"
 
 [packages]
 django = "*"
@@ -11,6 +12,7 @@ pillow = "*"
 django-imagekit = "*"
 djangorestframework = "*"
 django-crispy-forms = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.7"
