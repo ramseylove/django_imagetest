@@ -29,10 +29,7 @@ from imagekit.processors import ResizeToFill, SmartResize, ResizeToFit
 #         return reverse('success', kwargs={'pk': self.pk})
 
 class Image(models.Model):
-    media_image = ProcessedImageField(upload_to=upload_to,
-                                            processors=[ResizeToFit(1000)],
-                                            format='JPEG',
-                                            options={'quality': 90})
+    media_image = ProcessedImageField(upload_to='media_images')
     user = models.ForeignKey(get_user_model(), blank=True, on_delete=models.DO_NOTHING)
 
     def get_absolute_url(self):
