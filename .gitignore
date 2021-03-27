@@ -1,6 +1,9 @@
 # OSX #
 .DS_Store
 
+# ignore vscode folder
+.vscode
+
 # Byte-compiled / optimized / DLL files #
 __pycache__/
 *.py[cod]
