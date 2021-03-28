@@ -28,9 +28,25 @@ from imagekit.processors import ResizeToFill, SmartResize, ResizeToFit
 #     def get_absolute_url(self):
 #         return reverse('success', kwargs={'pk': self.pk})
 
+import os
+from datetime import datetime
+from uuid import uuid4
+
+def path_and_rename(path):
+    def wrapper(instance, filename):
+        ext = filename.split('.')[-1]
+        timestamp = str(datetime.now().timestamp()).split('.')[0]
+        if instance.user.id:
+            filename = f"{timestamp}-{instance.user.id}.{ext}"
+        else:
+            filename = f'{timestamp}-no_user.{ext}'
+
+        return os.path.join(path, filename)
+    return wrapper
+
 class Image(models.Model):
-    media_image = ProcessedImageField(upload_to='media_images')
-    user = models.ForeignKey(get_user_model(), blank=True, on_delete=models.DO_NOTHING)
+    media_image = ProcessedImageField(upload_to=path_and_rename('media_images'))
+    user = models.ForeignKey(get_user_model(), null=True, blank=True, on_delete=models.DO_NOTHING)
 
     def get_absolute_url(self):
         return reverse('success', kwargs={'pk': self.pk})

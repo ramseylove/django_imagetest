@@ -10,7 +10,22 @@ def upload_view(request, *args, **kwargs):
     if form.is_valid():
         # print(form.cleaned_data)
         obj = form.save(commit=False)
+        image = request.FILES.get('media_image')
+        
+        if request.user: 
+            obj.user = request.user
+        else:
+            obj.user = ''
+            
+        print(image.content_type)
+        print(image.name)
+        print(image.size)
+        print(image.file)
+        # print(image.path)
+        print(image.image)
+        new_image = image._set_name = 'image_likeness.png'
 
+        obj.save()
 
     return render(request, "image_upload/upload_form.html", {'form': form})
 
