@@ -134,8 +134,8 @@ USE_S3 = 'True'
 
 if USE_S3:
     
-    AWS_ACCESS_KEY_ID = 'FF2CZGXZKLQI5AZUOH3M' #spaces access key
-    AWS_SECRET_ACCESS_KEY = '4FGZOTp6WLTjTputlPz3jb2oDaRhj1B0CAkwnGRaYRE' #secret 
+    AWS_ACCESS_KEY_ID = '' #spaces access key
+    AWS_SECRET_ACCESS_KEY = '' #secret 
     AWS_STORAGE_BUCKET_NAME = 'djangoimageupload'
     AWS_S3_ENDPOINT_URL = 'https://sfo3.digitaloceanspaces.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
