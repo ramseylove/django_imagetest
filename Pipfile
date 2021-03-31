@@ -13,6 +13,8 @@ django-imagekit = "*"
 djangorestframework = "*"
 django-crispy-forms = "*"
 ipython = "*"
+django-storages = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.7"
