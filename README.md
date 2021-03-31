@@ -8,6 +8,7 @@ imagekit - https://django-imagekit.readthedocs.io/en/latest/#usage-overview
 pillow - https://pillow.readthedocs.io/en/stable/
 
 #TODO
-- change filename
-- get file info
-- save in subfolder
+- save static to bucket
+- save media to bucket
+- in subfolders
+- 

@@ -1,5 +1,7 @@
 # OSX #
 .DS_Store
+# ignore env file
+.env
 
 # ignore vscode folder
 .vscode

@@ -15,6 +15,7 @@ django-crispy-forms = "*"
 ipython = "*"
 django-storages = "*"
 boto3 = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

@@ -48,5 +48,5 @@ class Image(models.Model):
     media_image = ProcessedImageField(upload_to=path_and_rename('media_images'))
     user = models.ForeignKey(get_user_model(), null=True, blank=True, on_delete=models.DO_NOTHING)
 
-    def get_absolute_url(self):
-        return reverse('success', kwargs={'pk': self.pk})
+    # def get_absolute_url(self):
+    #     return reverse('success', kwargs={'pk': self.pk})

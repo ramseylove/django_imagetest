@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+# from .custom_storages import StaticStorage, MediaStorage
 import os
+
+# load envrionment variable from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p4+gd4u(@09+^z4sskq*cqww(2ny-($i!)(2e#m=p12=!k!ogr'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -130,27 +135,29 @@ USE_TZ = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
 USE_S3 = 'True'
 
 if USE_S3:
     
-    AWS_ACCESS_KEY_ID = '' #spaces access key
-    AWS_SECRET_ACCESS_KEY = '' #secret 
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID') # access key
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY') #secret 
     AWS_STORAGE_BUCKET_NAME = 'djangoimageupload'
     AWS_S3_ENDPOINT_URL = 'https://sfo3.digitaloceanspaces.com'
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     # s3 static settings
-    STATIC_LOCATION = 'static'
+    STATIC_LOCATION = STATICFILES_DIRS
     STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT_URL}/{STATIC_LOCATION}/'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'config.custom_storages.StaticStorage'
     # s3 public media settings
     PUBLIC_MEDIA_LOCATION = 'media'
+    # PUBLIC_MEDIA_LOCATION = settings.MEDI
     MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'config.custom_storages.MediaStorage'
 else:
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
