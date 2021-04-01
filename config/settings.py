@@ -161,3 +161,32 @@ else:
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# AWS_QUERYSTRING_AUTH = False
+
+# AWS_IS_GZIPPED = True
+# AWS_EXPIREY = 60 * 60 * 24 * 14
+
+# # For s3boto
+# AWS_HEADERS = {
+#     'Cache-Control': 'max-age=%d, s-maxage=%d, must-revalidate' % (AWS_EXPIREY, AWS_EXPIREY)
+# }
+
+# # For s3boto3
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=%d' % AWS_EXPIREY,
+# }
+
+# AWS_PRELOAD_METADATA = True
+# #AWS_S3_FILE_OVERWRITE = True
+
+# STATICFILES_STORAGE = 'config.storages.StaticStorage'
+# DEFAULT_FILE_STORAGE = 'config.storages.DefaultStorage'
+
+
+
+# # MEDIA S3 CONFIG PRODUCTION
+# # --------------------------------------------------------------------------------
+
+# AWS_MEDIA_DIR = 'media'
+# MEDIA_URL = AWS_S3_URL + AWS_MEDIA_DIR + '/'
+# MEDIA_ROOT = MEDIA_URL
